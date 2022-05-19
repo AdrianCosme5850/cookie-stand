@@ -1,3 +1,40 @@
 table, th, td { 
   border: 1px solid;
 }
+header h1 {
+  text-align: center;
+  font-size:xx-large;
+}
+header img {
+  display: flex;
+  max-width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+main p {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+main img {
+  display: flex;
+  max-width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+h2{
+  text-align: center;
+  font-size:xx-large;
+}
+ul {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+section img {
+  display: inline-flex;
+  justify-content: space-around;
+  max-width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
