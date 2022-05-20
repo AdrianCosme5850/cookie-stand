@@ -1,5 +1,6 @@
 'use strict';
 let tablePlace = document.getElementById('tablePlace')
+let newStore = document.getElementById('newStore');
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12am', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm']
 let cookieStores = []
 new CookieStore('Seattle', 23, 65, 6.3)
@@ -71,3 +72,17 @@ cookieStores[1].render()
 cookieStores[2].render()
 cookieStores[3].render()
 cookieStores[4].render()
+let eventCookieStore = 5
+newStore.addEventListener('submit', handleSumbit);
+function handleSumbit(event){
+  event.preventDefault();
+  let fullName = event.target.fullName.value;
+  console.log(fullName)
+  let maxCustomers = event.target.maxCustomers.value;
+  let minCustomers = event.target.minCustomers.value;
+  let avgCookies = event.target.avgCookies.value;
+  new CookieStore(fullName, maxCustomers, minCustomers, avgCookies)
+  cookieStores[eventCookieStore].dailyGeneratedCustomers();
+  cookieStores[eventCookieStore].render()
+  eventCookieStore += 1
+}
