@@ -34,30 +34,30 @@ function randomCustomer(min, max) {
 CookieStore.prototype.render = function(){
   let tableElem = document.createElement('tr')
   tablePlace.appendChild(tableElem);
-  let storeName = document.createElement('th')
+  let storeName = document.createElement('td')
   storeName.textContent = this.name
   tableElem.appendChild(storeName)
   for(let i = 0; i < 15; i++){
-  let rowElem = document.createElement('th');
+  let rowElem = document.createElement('td');
   rowElem.textContent = this.generatedCookies[i]
   tableElem.appendChild(rowElem);
   }
-  let totalRow = document.createElement('th')
+  let totalRow = document.createElement('td')
   totalRow.textContent = this.cookiesTotal
   tableElem.appendChild(totalRow)
 }
-function tableRender(){
+function tableHeaderRender(){
   let tableElem = document.createElement('tr');
   tablePlace.appendChild(tableElem);
-  let cityTitle = document.createElement('th')
+  let cityTitle = document.createElement('td')
   cityTitle.textContent = 'City'
   tableElem.appendChild(cityTitle)
   for(let i = 0; i < hours.length; i++){
-  let rowElem = document.createElement('th');
+  let rowElem = document.createElement('td');
   rowElem.textContent = hours[i]
   tableElem.appendChild(rowElem);
   }
-  let totalTitle = document.createElement('th')
+  let totalTitle = document.createElement('td')
   totalTitle.textContent = 'Total Sold'
   tableElem.appendChild(totalTitle)
  }
@@ -66,7 +66,7 @@ cookieStores[1].dailyGeneratedCustomers()
 cookieStores[2].dailyGeneratedCustomers()
 cookieStores[3].dailyGeneratedCustomers()
 cookieStores[4].dailyGeneratedCustomers()
-tableRender()
+tableHeaderRender()
 cookieStores[0].render()
 cookieStores[1].render()
 cookieStores[2].render()
@@ -77,12 +77,43 @@ newStore.addEventListener('submit', handleSumbit);
 function handleSumbit(event){
   event.preventDefault();
   let fullName = event.target.fullName.value;
-  console.log(fullName)
   let maxCustomers = event.target.maxCustomers.value;
   let minCustomers = event.target.minCustomers.value;
   let avgCookies = event.target.avgCookies.value;
   new CookieStore(fullName, maxCustomers, minCustomers, avgCookies)
   cookieStores[eventCookieStore].dailyGeneratedCustomers();
+  let rowCount = tablePlace.rows.length
+  tablePlace.deleteRow(rowCount -1);
   cookieStores[eventCookieStore].render()
+  tableFooterRender()
   eventCookieStore += 1
 }
+function tableFooterRender(){
+  let tableElem = document.createElement('tr');
+  tablePlace.appendChild(tableElem);
+  let cityTitle = document.createElement('td')
+  cityTitle.textContent = 'Totals'
+  tableElem.appendChild(cityTitle)
+  let dailyTotals = []
+  let hourlyTotal = 0
+  for(let x = 0; x < hours.length; x++){
+  for(let i = 0; i < cookieStores.length; i++){
+   hourlyTotal += cookieStores[i].generatedCookies[x]
+  }
+  dailyTotals.push(hourlyTotal)
+  hourlyTotal = 0
+}
+  for(let i = 0; i < hours.length; i++){
+  let rowElem = document.createElement('td');
+  rowElem.textContent = dailyTotals[i]
+  tableElem.appendChild(rowElem);
+ }
+ let allStoresTotal = 0
+ for(let i = 0; i < cookieStores.length; i++){
+ allStoresTotal += cookieStores[i].cookiesTotal}
+ let rowElem = document.createElement('td');
+ rowElem.textContent = allStoresTotal
+ tableElem.appendChild(rowElem);
+};
+tableFooterRender()
+
