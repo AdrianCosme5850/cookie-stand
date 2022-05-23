@@ -1,9 +1,17 @@
 table, th, td { 
   border: 1px solid;
+  font-family: Arial, Helvetica, sans-serif;
+  color:blueviolet;
+  background-color: black;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 header h1 {
   text-align: center;
   font-size:xx-large;
+  font-family: 'Roboto', sans-serif;
+  color:aquamarine;
 }
 header img {
   display: flex;
@@ -11,10 +19,15 @@ header img {
   margin-left: auto;
   margin-right: auto;
 }
+body{
+  background-color: salmon;
+}
 main p {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: bisque;
 }
 main img {
   display: flex;
@@ -25,6 +38,8 @@ main img {
 h2{
   text-align: center;
   font-size:xx-large;
+  font-family: 'Roboto', sans-serif;
+  color:aquamarine;
 }
 ul {
   max-width: 400px;
@@ -32,9 +47,7 @@ ul {
   margin-right: auto;
 }
 section img {
-  display: inline-flex;
-  justify-content: space-around;
-  max-width: 30%;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
